@@ -22,27 +22,32 @@
 	</center> -->
 
 	<center>
-    <div style="margin: 10px;"><strong>-= Hand Tracking =-</strong></div>
+    <!-- <div style="margin: 10px;"><strong>-= Hand Tracking =-</strong></div> -->
     <video id="video" autoplay="true" style="display:none;"></video>
-    <canvas id="canvas" style="width:640px; height:480px;border:1px solid black;"></canvas>
+    <canvas id="canvas" class="hide" style="width:640px; height:480px;border:1px solid black;"></canvas>
     <div style="margin: 15px;">
-      <input id="cbxHull" type="checkbox" checked="checked">Convex Hull</input>
-      <input id="cbxDefects" type="checkbox">Convexity Defects</input>
-      <input id="cbxSkin" type="checkbox" checked="checked">Skin Detection</input>
+      <input id="cbxHull" type="checkbox" checked="checked"><!-- Convex Hull --></input>
+      <input id="cbxDefects" type="checkbox"><!-- Convexity Defects --></input>
+      <input id="cbxSkin" type="checkbox" checked="checked"><!-- Skin Detection --></input>
     </div>
-    <div style="margin: 15px;"><strong>Powered by <a href="http://code.google.com/p/js-handtracking/" target="_blank">js-handtracking</a></strong></div>
+    <!-- <div style="margin: 15px;"><strong>Powered by <a href="http://code.google.com/p/js-handtracking/" target="_blank">js-handtracking</a></strong></div> -->
   </center>
 
 
 <!-- <div class="wrapper"> -->
-  <div id="shelf"></div>
+  	<div id="shelf">
+  		<!-- <img src="images/shelf.svg"> -->
+  	</div>
 
-  <div id="checkout">
-  	<img src="images/tomato.svg" class="produce">
-  	<img src="images/burrito.svg" class="produce">
-  	<img src="images/carrot.svg" class="produce">
-  	<img src="images/broccoli.svg" class="produce">
-  </div>
+
+	<div id="cart"></div>
+
+  	<div id="checkout">
+	  	<!-- <img src="images/tomato.svg" class="produce">
+	  	<img src="images/burrito.svg" class="produce">
+	  	<img src="images/carrot.svg" class="produce">
+	  	<img src="images/broccoli.svg" class="produce"> -->
+	</div>
 <!-- </div> -->
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

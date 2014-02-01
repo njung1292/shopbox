@@ -6,6 +6,9 @@ css_dir = "stylesheets/css"
 sass_dir = "stylesheets/sass"
 images_dir = "images"
 javascripts_dir = "js"
+fonts_dir = "fonts"
+
+http_fonts_path = http_path + "fonts"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed

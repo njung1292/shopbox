@@ -11,6 +11,30 @@
         width: auto;
         z-index: 1000;
     }
+
+    .shrink {
+        @include transition(all 0.3s ease-in-out 0);
+        width: 50px;
+    }
+
+    #cart {
+        //background-image: ;
+    }
+
+    #shelf {
+        //position: absolute;
+        background-image: url('../../images/shelf.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        // max-width: 100%;
+        // width: 400px;
+        width: 50%;
+        //height: 300px;
+        max-height: 100%;
+        min-height: 300px;
+        // width: 500px;
+        // height: 500px;
+    }
 //}
 
 // .wrapper {

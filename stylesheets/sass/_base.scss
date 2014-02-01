@@ -5,7 +5,10 @@
 	}
 
 	body {
-		margin: 0 auto;
+		font-family: 'eraserregular', Arial;
+		margin: 50px auto;
+		background-image: url('../../images/floortile.svg');
+		background-size: 175px;
 	}
 
 	// ::selection {
