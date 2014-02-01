@@ -1,0 +1,26 @@
+{
+  "name": "(s)hopbox",
+  "version": "0.0.0",
+  "description": "hey, bunnies need to shop too...",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/njung92/broccolicka.git"
+  },
+  "keywords": [
+    "shopbox",
+    "broccolicka"
+  ],
+  "author": "the-camel",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/njung92/broccolicka/issues"
+  },
+  "dependencies": {
+    "express": "~3.4.8",
+    "logfmt": "~0.20.0"
+  }
+}
