@@ -86,21 +86,21 @@ TRACKER.prototype.draw = function(candidate){
 
   	this.drawHull(candidate.contour, "yellow");
 
-	if (this.cbxHull.checked){
+	// if (this.cbxHull.checked){
 	  this.drawHull(candidate.hull, "red");
-	}
+	// }
 	
-	if (this.cbxDefects.checked){
-	  this.drawDefects(candidate.defects, "blue");
-	}
+	// if (this.cbxDefects.checked){
+	//   this.drawDefects(candidate.defects, "blue");
+	// }
   }
   
-  if (this.cbxSkin.checked){
+  // if (this.cbxSkin.checked){
 	this.context.putImageData(
 	  this.createImage(this.tracker.mask, this.image), 
 	  this.canvas.width - this.image.width,
 	  this.canvas.height - this.image.height);
-  }
+  // }
 };
 
 TRACKER.prototype.drawHull = function(hull, color){
@@ -198,7 +198,7 @@ var SITE = {
 		this.bindEvents();
 
 		var LP_coeff = 0.6;
-		var POS_coeff = 0.3;
+		var POS_coeff = 0.7;
 		var AVG_coeff = 0.1;
 		var LP_init = 300; // arbitrary
 		this.handPos_x =  new DIFFEQ(POS_coeff, 0, 1 - POS_coeff, LP_init);

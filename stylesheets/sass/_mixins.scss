@@ -6,6 +6,16 @@
 	}
 /* @end */
 
+
+	// @mixin center-element($width, $height) {
+	// 	$left-margin: -($width / 2);
+	// 	$top-margin: -($height / 2);
+	// 	margin: $top-margin 0 0 $left-margin;
+	// 	left: 50%;
+	// 	position: absolute;
+	// 	top: 50%;
+	// }
+
 /* @group animations */
 	@mixin keyframes($animation-name) {
 		@-o-keyframes $animation-name {

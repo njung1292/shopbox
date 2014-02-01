@@ -17,8 +17,8 @@ var SHOP = {
 	},
 
 	tick: function() {
-		var width = 500;
-		var height = 400;
+		var width = window.innerWidth;//500; // range of motion
+		var height = window.innerHeight;//400;
 		requestAnimationFrame(this.tick.bind(this));
 		this.handPos = SITE.getHandPos(width, height);
 		if (!this.handPos) {
@@ -46,9 +46,9 @@ var SHOP = {
 			burrito: "images/burrito.svg",
 		};
 
-		this.grabbedLimb = "images/carrot.svg";
-		this.ungrabbedLimb = "images/tomato.svg";
-		this.$shelf.append('<img src="' + this.ungrabbedLimb + '" class="limb' +'" id="' + 'hand' + '">');
+		this.grabbedLimb = "images/openhand.svg";
+		this.ungrabbedLimb = "images/openhand.svg";
+		this.$body.append('<img src="' + this.ungrabbedLimb + '" class="limb' +'" id="' + 'hand' + '">');
 
 		this.cart = {
 			files: []
@@ -71,13 +71,22 @@ var SHOP = {
 			pos: _pos
 		};
 
-		this.$shelf.append('<img src="' + _iconURL + '" class="produce ' + _filename +'" id="' + _filename + this.itemCount + '">');
+		this.$body.append('<img src="' + _iconURL + '" class="produce ' + _filename +'" id="' + _filename + this.itemCount + '">');
 	},
 
 	getProduce: function (pos) {
-		var cx = 300; // center coords of shelves
-		var cy = 300;
-		var r = 300; // radius of shelves
+		var s = $('#shelf');
+		var cx = s.position().left + s.width()/2; //window.innerWidth - ($('#shelf').position.right() + $('#shelf').width()/2);//300; // center coords of shelves
+		var cy = s.position().top + s.height()/2;//$('#shelf').css('top') + $('#shelf').css('height')/2;
+		var r = s.width()/2;//$('#shelf').css('width')/2;///300; // radius of shelves
+
+		// alert('innerWidth: ' + window.innerWidth);
+		// alert('innerHeight: ' + window.innerHeight);
+		console.log('cx: ', cx);
+		console.log('cy: ', cy);
+		console.log('r: ', r);
+		//alert($('.shelf').css('top'));
+
 		var x = pos.x - cx;
 		var y = pos.y - cy;
 		// in bounds
@@ -95,7 +104,7 @@ var SHOP = {
 		$('.limb').attr('src', this.grabbedLimb);
 		var produce = this.getProduce(this.handPos);
 		if (produce) {
-			this.setCurrentItem(produce, this.photos[produce], this.icons[produce], this.handPos);
+			this.setCurrentItem(produce, getVeggie(produce), this.icons[produce], this.handPos);
 		}
 	},
 
@@ -111,19 +120,22 @@ var SHOP = {
 				});
 				$('#' + this.currentItem.filename + this.itemCount).addClass('shrink');
 				this.itemCount++;
-			} else { // remove currently grabbing porduce
-				$('#' + this.currentItem.filename + this.itemCount).remove();
-			}
+			} 
+
+			// else { // remove currently grabbing porduce
+			// 	$('#' + this.currentItem.filename + this.itemCount).remove();
+			// }
 		}
 		this.currentItem = null;
 	},
 
 	handInCart: function(pos) {
-		var x = 200; // top left coords of cart
-		var y = 200;
-		var l = 100; // length,width
-		var w = 100;
-		return pos.x > x && pos.x < x + w && pos.y > y && pos.y < y + w;
+		var cart = $('#cart');
+		var x = cart.position().left; // top left coords of cart
+		var y = cart.position().top;
+		var h = cart.height(); // length,width
+		var w = cart.width();
+		return pos.x > x && pos.x < x + w && pos.y > y && pos.y < y + h;
 	},
 
 	saveToDropbox: function() {

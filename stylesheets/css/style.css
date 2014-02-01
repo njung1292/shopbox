@@ -70,7 +70,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* @group animations */
 /* @end */
 @font-face {
-  font-family: 'eraserdust';
+  font-family: 'eraserdustregular';
   src: url("erasdust-webfont.eot");
   src: url("erasdust-webfont.eot?#iefix") format("embedded-opentype"), url("erasdust-webfont.woff") format("woff"), url("erasdust-webfont.ttf") format("truetype"), url("erasdust-webfont.svg#eraserdustregular") format("svg");
   font-weight: normal;
@@ -96,21 +96,31 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* line 7, ../sass/_base.scss */
+html {
+  height: 100%;
+}
+
+/* line 11, ../sass/_base.scss */
 body {
+  overflow: hidden;
   font-family: 'eraserregular', Arial;
-  margin: 50px auto;
   background-image: url("../../images/floortile.svg");
   background-size: 175px;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #0000ff;
 }
 
 /* @end */
 /* @group additional styling */
-/* line 25, ../sass/_base.scss */
+/* line 36, ../sass/_base.scss */
 .hide {
   display: none;
 }
 
-/* line 29, ../sass/_base.scss */
+/* line 40, ../sass/_base.scss */
 .hide-text {
   display: block;
   overflow: hidden;
@@ -119,22 +129,31 @@ body {
 }
 
 /* @end */
-/* line 2, ../sass/_content.scss */
+/* line 3, ../sass/_content.scss */
+canvas {
+  width: 320px;
+  height: 240px;
+  left: 5%;
+  position: absolute;
+  top: 5%;
+}
+
+/* line 10, ../sass/_content.scss */
 .produce {
   position: absolute;
   width: 100px;
   height: auto;
 }
 
-/* line 8, ../sass/_content.scss */
+/* line 16, ../sass/_content.scss */
 .limb {
   position: absolute;
-  height: 300px;
+  height: 70%;
   width: auto;
   z-index: 1000;
 }
 
-/* line 15, ../sass/_content.scss */
+/* line 23, ../sass/_content.scss */
 .shrink {
   -webkit-transition: all 0.3s ease-in-out;
   -webkit-transition-delay: 0;
@@ -144,12 +163,67 @@ body {
   width: 50px;
 }
 
-/* line 24, ../sass/_content.scss */
+/* line 28, ../sass/_content.scss */
+#cart {
+  background-color: blue;
+  position: absolute;
+  width: 35%;
+  min-width: 300px;
+  left: 5%;
+  bottom: 10%;
+  max-height: 50%;
+  min-height: 200px;
+}
+
+/* line 44, ../sass/_content.scss */
+.wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1px red solid;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+/* line 54, ../sass/_content.scss */
 #shelf {
+  font-family: 'eraserregular', 'Amatic SC', cursive;
+  color: #fff;
   background-image: url("../../images/shelf.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  width: 50%;
-  max-height: 100%;
+  position: absolute;
+  border: 1px black solid;
+  width: 35%;
+  min-width: 300px;
+  right: 5%;
+  top: 10%;
+  bottom: 2%;
+  max-height: 80%;
   min-height: 300px;
+}
+/* line 58, ../sass/_content.scss */
+#shelf .sign {
+  position: absolute;
+}
+/* line 62, ../sass/_content.scss */
+#shelf .sign.sign-tomatoes {
+  left: 20%;
+  top: 4%;
+}
+/* line 67, ../sass/_content.scss */
+#shelf .sign.sign-broccoli {
+  left: 65%;
+  top: 4%;
+}
+/* line 72, ../sass/_content.scss */
+#shelf .sign.sign-burritos {
+  top: 93%;
+  left: 65%;
+}
+/* line 77, ../sass/_content.scss */
+#shelf .sign.sign-carrots {
+  top: 93%;
+  left: 22%;
 }
