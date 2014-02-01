@@ -1,5 +1,4 @@
 var TRACKER = function(tickCallback){
-	this.candidate = null;
 	this.tickCallback = tickCallback;
 };
 
@@ -57,7 +56,7 @@ TRACKER.prototype.tick = function(){
 	if (candidate) {
 		var box = this.getBox(candidate);
   		this.tickCallback(box);
-  		this.drawHull(box, "blue");
+  		// this.drawHull(box, "blue");
 	}
 	this.draw(candidate);
   }
@@ -173,6 +172,7 @@ var DIFFEQ = function (a, b, c, init) {
 };
 
 DIFFEQ.prototype.step = function(x) {
+	this.yOld = this.y;
 	this.y = this.a * x + this.b * this.xOld + this.c * this.yOld;
 	this.xOld = x;
 	// console.log("stepped to: " + this.y);
@@ -183,7 +183,8 @@ DIFFEQ.prototype.val = function() {
 }
 
 var SITE = {
-	box: null,
+	handPos_x: null,
+	handPos_y: null,
 	width_LP: null, // low-passed
 	width_DT: null, // derivative of low-pass
 	width_AVG: null, // lower-pass of low-pass
@@ -195,9 +196,12 @@ var SITE = {
 
 		this.bindEvents();
 
-		var LP_coeff = 0.7;
-		var AVG_coeff = 0.05;
+		var LP_coeff = 0.6;
+		var POS_coeff = 0.3;
+		var AVG_coeff = 0.1;
 		var LP_init = 300; // arbitrary
+		this.handPos_x =  new DIFFEQ(POS_coeff, 0, 1 - POS_coeff, LP_init);
+		this.handPos_y =  new DIFFEQ(POS_coeff, 0, 1 - POS_coeff, LP_init);
 		this.width_LP = new DIFFEQ(LP_coeff, 0, 1 - LP_coeff, LP_init);
 		this.width_DT = new DIFFEQ(1, -1, 0, 0);
 		this.width_AVG = new DIFFEQ(AVG_coeff, 0, 1 - AVG_coeff, LP_init);
@@ -210,18 +214,22 @@ var SITE = {
 	},
 
 	updateBox: function (box) {
-		this.box = box;
+		this.handPos_x.step((box[0].x + box[1].x)/2);
+		this.handPos_y.step((box[0].y + box[1].y)/2);
+		// console.log((box[0].x + box[1].x)/2);
 		var width = box[1].x - box[0].x;
 		// console.log("width: " + width);
 		this.width_LP.step(width);
 		this.width_DT.step(this.width_LP.val());
 		this.width_AVG.step(this.width_LP.val());
 		this.updateGrab(this.width_DT.val(), this.width_AVG.val());
+
+		this.tracker.drawDefects([{depthPoint:this.getHandPos()}], "blue");
 	},
 
 	updateGrab: function(dt, avg) {
-		var grabThresh = 0.1;
-		var ungrabThresh = 0.1;
+		var grabThresh = 0.15;
+		var ungrabThresh = 0.15;
 		if (dt > ungrabThresh * avg && this.grab) {
 			this.grab = false;
 			console.log("UNGRAB");
@@ -233,16 +241,11 @@ var SITE = {
 	},
 
 	bindEvents: function() {
-		// this.$body.on('click', (function(){console.log(this.getHandPos());}).bind(this));
+		this.$body.on('click', (function(){console.log(this.getHandPos());}).bind(this));
 	},
 
 	getHandPos: function() {
-		if (!this.box) {
-			return null;
-		}
-		var x = (this.box[0].x + this.box[1].x)/2;
-		var y = (this.box[0].y + this.box[1].y)/2;
-		return {x: x, y: y};
+		return {x: this.handPos_x.val(), y: this.handPos_y.val()};
 	},
 
 	isGrabbed: function() {
