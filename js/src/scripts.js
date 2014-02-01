@@ -37,7 +37,8 @@ TRACKER.prototype.videoReady = function(stream){
   } else {
 	this.video.src = stream;
   }
-  
+  this.context.translate(this.canvas.width, 0);
+  this.context.scale(-1, 1);
   this.tick();
 };
   
@@ -79,7 +80,6 @@ TRACKER.prototype.getBox = function(candidate){
 
 TRACKER.prototype.snapshot = function(){
   this.context.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
-	
   return this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
 };
 
@@ -113,9 +113,9 @@ TRACKER.prototype.drawHull = function(hull, color){
 	this.context.lineWidth = 3;
 	this.context.strokeStyle = color;
 
-	this.context.moveTo(hull[0].x, hull[0].y);
+	this.context.moveTo(this.canvas.width - hull[0].x, hull[0].y);
 	for (; i < len; ++ i){
-	  this.context.lineTo(hull[i].x, hull[i].y);
+	  this.context.lineTo(this.canvas.width - hull[i].x, hull[i].y);
 	}
 
 	this.context.stroke();
@@ -133,7 +133,7 @@ TRACKER.prototype.drawDefects = function(defects, color){
 
 	for (; i < len; ++ i){
 	  point = defects[i].depthPoint;
-	  this.context.strokeRect(point.x - 4, point.y - 4, 8, 8);
+	  this.context.strokeRect(this.canvas.width - point.x - 4, point.y - 4, 8, 8);
 	}
 
 	this.context.stroke();
