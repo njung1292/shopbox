@@ -7,26 +7,32 @@ var SHOP = {
 		this.initVars();
 
 		this.handPos = SITE.getHandPos();
-		this.currentItem;
+		this.currentItem = null;
 
 		this.handListener();
 
 	},
 
 	initVars: function() {
-		tomatoURL = "http://www.ishs.org/sites/default/files/news-images/tomato.jpg";
-		carrotURL = "http://plus.maths.org/content/sites/plus.maths.org/files/articles/2011/paraconsistency/carrot.jpg";
-		broccoliURL = "http://publishingperspectives.com/wp-content/uploads/2012/03/broccoli.jpg";
-		burritoURL = "http://www.tacobell.com/tb_files/cbm/images/burrito-burrito.png";
+		this.tomatoURL = "http://www.ishs.org/sites/default/files/news-images/tomato.jpg";
+		this.carrotURL = "http://plus.maths.org/content/sites/plus.maths.org/files/articles/2011/paraconsistency/carrot.jpg";
+		this.broccoliURL = "http://publishingperspectives.com/wp-content/uploads/2012/03/broccoli.jpg";
+		this.burritoURL = "http://www.tacobell.com/tb_files/cbm/images/burrito-burrito.png";
+
+		this.tomatoIconURL =
+		this.carrotIconURL =
+		this.broccoliIconURL =
+		this.burritoIconURL =
 	},
 
-	setCurrentItem: function(_filename, _url, _pos) {
+	setCurrentItem: function(_filename, _url, _iconURL, _pos) {
 		this.currentItem = {
 			filename: _filename,
 			url: _url,
+			iconURL: _iconURL,
 			pos: _pos
 		}
-		this.$shelf.appendChild('<img src="' + _url + '" class="produce" id="' + _filename + '">');
+		this.$shelf.appendChild('<img src="' + _iconURL + '" class="produce" id="' + _filename + '">');
 	},
 
 	handListener: function() {
@@ -41,19 +47,19 @@ var SHOP = {
 					// Tomato or carrot
 					if (this.handPos.y >= 0 && this.handPos.y <= 5) {
 						// Tomato
-						this.setCurrentItem('Tomato', tomatoURL, this.handPos);
+						this.setCurrentItem('Tomato', this.tomatoURL, this.tomatoIconURL, this.handPos);
 					} else if (this.handPos.y >= 0 && this.handPos.y > 5) {
 						// Carrot!
-						this.setCurrentItem('Carrot', carrotURL, this.handPos);
+						this.setCurrentItem('Carrot', this.carrotURL, this.carrotIconURL, this.handPos);
 					}
 				} else if (this.handPos.x >=0 && this.handPos.x > 5) {
 					// Broccoli or burrito
 					if (this.handPos.y >= 0 && this.handPos.y <= 5) {
 						// Broccoli
-						this.setCurrentItem('Broccoli', broccoliURL, this.handPos);
+						this.setCurrentItem('Broccoli', this.broccoliURL, this.broccoliIconURL, this.handPos);
 					} else if (this.handPos.y >= 0 && this.handPos.y > 5) {
 						// burrito!
-						this.setCurrentItem('burrito', burritoURL, this.handPos);
+						this.setCurrentItem('Burrito', this.burritoURL, this.burritoIconURL, this.handPos);
 					}
 				}
 			}
