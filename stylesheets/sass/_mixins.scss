@@ -1,0 +1,31 @@
+/* @group media queries */
+	@mixin respond-to($query) {
+		@media only screen and #{$query} {
+			@content;
+		}
+	}
+/* @end */
+
+/* @group animations */
+	@mixin keyframes($animation-name) {
+		@-o-keyframes $animation-name {
+			@content;
+		}
+		@-moz-keyframes $animation-name {
+			@content;
+		}
+		@-webkit-keyframes $animation-name { 
+			@content;
+		} 
+		@-keyframes $animation-name {
+			@content;
+		}
+	}
+
+	@mixin animation($values) {
+		-o-animation: $values;
+	  	-moz-animation: $values;
+	  	-webkit-animation: $values;
+	 	animation: $values;
+	}
+/* @end */

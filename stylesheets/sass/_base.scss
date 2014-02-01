@@ -1,0 +1,32 @@
+/* @group general styling */
+	* {
+		@include box-sizing(border-box);
+		-webkit-appearance: none;
+	}
+
+	body {
+		margin: 0 auto;
+	}
+
+	// ::selection {
+	// 	background: $some-color;
+	// }
+
+	// ::-moz-selection {
+	// 	background: $some-color;
+	// }
+/* @end */
+
+
+/* @group additional styling */
+	.hide {
+		display: none;
+	}
+
+	.hide-text {
+		display: block;
+		overflow: hidden;
+		text-indent: 100%;
+		white-space: nowrap;
+	}
+/* @end */
