@@ -1,5 +1,6 @@
-var TRACKER = function(){
+var TRACKER = function(tickCallback){
 	this.candidate = null;
+	this.tickCallback = tickCallback;
 };
 
 TRACKER.prototype.start = function() {
@@ -54,17 +55,16 @@ TRACKER.prototype.tick = function(){
 	
 	var candidate = this.tracker.detect(image);
 	if (candidate) {
-  		this.candidate = candidate;
+		var box = this.getBox(candidate);
+  		this.tickCallback(box);
+  		this.drawHull(box, "blue");
 	}
 	this.draw(candidate);
   }
 };
 
-TRACKER.prototype.getBox = function(){
-	if (!this.candidate) {
-		return null;
-	}
-	var hull = this.candidate.hull;
+TRACKER.prototype.getBox = function(candidate){
+	var hull = candidate.hull;
 	var xmin = 99999999; // this should be big enough
 	var ymin = xmin;
 	var xmax = -1;
@@ -162,34 +162,91 @@ TRACKER.prototype.createImage = function(imageSrc, imageDst){
   return imageDst;
 };
 
+// first order diffeq: y[n] = ax[n] + bx[n-1] + cy[n-1]
+var DIFFEQ = function (a, b, c, init) {
+	this.a = a;
+	this.b = b;
+	this.c = c;
+	this.y = init;
+	this.xOld = init;
+	this.yOld = init;
+};
+
+DIFFEQ.prototype.step = function(x) {
+	this.y = this.a * x + this.b * this.xOld + this.c * this.yOld;
+	this.xOld = x;
+	// console.log("stepped to: " + this.y);
+};
+
+DIFFEQ.prototype.val = function() {
+	return this.y;
+}
 
 var SITE = {
-	tracker: null,
+	box: null,
+	width_LP: null, // low-passed
+	width_DT: null, // derivative of low-pass
+	width_AVG: null, // lower-pass of low-pass
+	grab: false,
+
 	init: function() {
 		this.$document = $(window.document);
 		this.$body = $('body');
 
 		this.bindEvents();
 
+		var LP_coeff = 0.7;
+		var AVG_coeff = 0.05;
+		var LP_init = 300; // arbitrary
+		this.width_LP = new DIFFEQ(LP_coeff, 0, 1 - LP_coeff, LP_init);
+		this.width_DT = new DIFFEQ(1, -1, 0, 0);
+		this.width_AVG = new DIFFEQ(AVG_coeff, 0, 1 - AVG_coeff, LP_init);
+
 		var that = this;
 		window.onload = function(){
-			that.tracker = new TRACKER();
+			that.tracker = new TRACKER(that.updateBox.bind(that));
 			that.tracker.start();
 		};
 	},
 
+	updateBox: function (box) {
+		this.box = box;
+		var width = box[1].x - box[0].x;
+		// console.log("width: " + width);
+		this.width_LP.step(width);
+		this.width_DT.step(this.width_LP.val());
+		this.width_AVG.step(this.width_LP.val());
+		this.updateGrab(this.width_DT.val(), this.width_AVG.val());
+	},
+
+	updateGrab: function(dt, avg) {
+		var grabThresh = 0.1;
+		var ungrabThresh = 0.1;
+		if (dt > ungrabThresh * avg && this.grab) {
+			this.grab = false;
+			console.log("UNGRAB");
+		}
+		if (dt < -1 * ungrabThresh * avg && !this.grab) {
+			this.grab = true;
+			console.log("GRAB");
+		}
+	},
+
 	bindEvents: function() {
-		this.$body.on('click', (function(){console.log(this.getHandPos());}).bind(this));
+		// this.$body.on('click', (function(){console.log(this.getHandPos());}).bind(this));
 	},
 
 	getHandPos: function() {
-		if (!this.tracker) {
+		if (!this.box) {
 			return null;
 		}
-		var box = this.tracker.getBox();
-		var x = (box[0].x + box[1].x)/2;
-		var y = (box[0].y + box[1].y)/2;
+		var x = (this.box[0].x + this.box[1].x)/2;
+		var y = (this.box[0].y + this.box[1].y)/2;
 		return {x: x, y: y};
+	},
+
+	isGrabbed: function() {
+		return this.grab;
 	},
 
 	functionName: function(e) {
