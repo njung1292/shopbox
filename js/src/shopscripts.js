@@ -4,7 +4,7 @@ var SHOP = {
 		this.$document = $(window.document);
 		this.$body = $('body');
 		this.$shelf = $('#shelf');
-		this.$checkoutButton = $('#checkout');
+		this.$checkoutButton = $('.button-checkout');
 		this.$wrapper = $('.wrapper');
 		console.log(this.$shelf);
 
@@ -46,7 +46,7 @@ var SHOP = {
 			burrito: "images/burrito.svg",
 		};
 
-		this.grabbedLimb = "images/openhand.svg";
+		this.grabbedLimb = "images/fist.svg";
 		this.ungrabbedLimb = "images/openhand.svg";
 		this.$body.append('<img src="' + this.ungrabbedLimb + '" class="limb' +'" id="' + 'hand' + '">');
 
@@ -60,7 +60,13 @@ var SHOP = {
 	bindEvents: function() {
 		console.log(SITE);
 		SITE.setGrabCallbacks(this.onGrab.bind(this), this.onUngrab.bind(this));
+		this.$checkoutButton.on('hover', this.hoverButton.bind(this));
 		this.$checkoutButton.on('click', this.saveToDropbox.bind(this));
+	},
+
+	hoverButton: function() {
+		alert('hi');
+		this.$checkoutButton.css({'opacity': 0});
 	},
 
 	setCurrentItem: function(_filename, _url, _iconURL, _pos) {
@@ -112,7 +118,7 @@ var SHOP = {
 		$('.limb').attr('src', this.ungrabbedLimb);
 		// Release
 		if (this.currentItem) {
-			//if (this.handInCart(this.handPos)) {
+			if (this.handInCart(this.handPos)) {
 				console.log('droppin');
 				this.cart.files.push({
 					url: this.currentItem.url,
@@ -122,9 +128,9 @@ var SHOP = {
 				this.itemCount++;
 
 
-			//} else { // remove currently grabbing porduce
-			//	$('#' + this.currentItem.filename + this.itemCount).remove();
-			//}
+			} else { // remove currently grabbing porduce
+				$('#' + this.currentItem.filename + this.itemCount).remove();
+			}
 
 		}
 		this.currentItem = null;
@@ -142,6 +148,8 @@ var SHOP = {
 	saveToDropbox: function() {
 		if (this.cart.files.length > 0) {
 			Dropbox.save(this.cart);
+		} else {
+			alert('Grab some produce!');
 		}
 	}
 }

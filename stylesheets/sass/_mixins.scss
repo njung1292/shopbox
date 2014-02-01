@@ -16,6 +16,16 @@
 	// 	top: 50%;
 	// }
 
+	/* @group miscellaneous placeholders */
+	%center-element-horiz {
+		left: 0;
+		margin-left: auto;
+		margin-right: auto;
+		position: absolute;
+		right: 0;
+	}
+/* @end */
+
 /* @group animations */
 	@mixin keyframes($animation-name) {
 		@-o-keyframes $animation-name {

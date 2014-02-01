@@ -230,8 +230,8 @@ var SITE = {
 	},
 
 	updateGrab: function(dt, avg) {
-		var grabThresh = 0.15;
-		var ungrabThresh = 0.15;
+		var grabThresh = 0.10;
+		var ungrabThresh = 0.10;
 		if (dt > ungrabThresh * avg && this.grab) {
 			if (this.onUngrab) {
 				this.onUngrab();
