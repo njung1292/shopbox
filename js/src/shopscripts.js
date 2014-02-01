@@ -13,7 +13,6 @@ var SHOP = {
 		this.bindEvents();
 
 		this.tick();
-
 	},
 
 	tick: function() {
@@ -74,6 +73,11 @@ var SHOP = {
 		} else {
 			$('.limb').attr('src', this.ungrabbedLimb);
 		}
+
+		this.$body.css('background-image', 'url("../../images/flower.jpg")');
+		this.$body.css('background-size', '50px');
+		//$('.limb').addClass('bunny');
+
 	},
 
 	// hoverButton: function() {

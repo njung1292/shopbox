@@ -11,7 +11,7 @@
 		position: absolute;
         //width: 100px;
         height: auto;
-
+        //z-index: 50;
         &.tomato {
             width: 100px;
         }
@@ -34,6 +34,10 @@
         height: 70%;
         width: auto;
         z-index: 1000;
+
+        &.bunny {
+            z-index: 100;
+        }
     }
 
     .shrink {

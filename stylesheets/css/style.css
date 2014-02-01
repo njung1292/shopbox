@@ -168,8 +168,12 @@ canvas {
   width: auto;
   z-index: 1000;
 }
+/* line 38, ../sass/_content.scss */
+.limb.bunny {
+  z-index: 100;
+}
 
-/* line 39, ../sass/_content.scss */
+/* line 43, ../sass/_content.scss */
 .shrink {
   -webkit-transition: all 0.3s ease-in-out;
   -webkit-transition-delay: 0;
@@ -177,24 +181,24 @@ canvas {
   -o-transition: all 0.3s ease-in-out 0;
   transition: all 0.3s ease-in-out 0;
 }
-/* line 41, ../sass/_content.scss */
+/* line 45, ../sass/_content.scss */
 .shrink.tomato {
   width: 50px;
 }
-/* line 45, ../sass/_content.scss */
+/* line 49, ../sass/_content.scss */
 .shrink.burrito {
   width: 100px;
 }
-/* line 49, ../sass/_content.scss */
+/* line 53, ../sass/_content.scss */
 .shrink.carrot {
   width: 120px;
 }
-/* line 53, ../sass/_content.scss */
+/* line 57, ../sass/_content.scss */
 .shrink.broccoli {
   width: 50px;
 }
 
-/* line 58, ../sass/_content.scss */
+/* line 62, ../sass/_content.scss */
 #cart {
   background: url("../../images/basket.svg") no-repeat;
   background-repeat: no-repeat;
@@ -207,7 +211,7 @@ canvas {
   min-height: 300px;
 }
 
-/* line 78, ../sass/_content.scss */
+/* line 82, ../sass/_content.scss */
 .wrapper {
   position: absolute;
   left: 0;
@@ -217,7 +221,7 @@ canvas {
   min-height: 100%;
 }
 
-/* line 88, ../sass/_content.scss */
+/* line 92, ../sass/_content.scss */
 #shelf {
   color: #fff;
   font-size: 18px;
@@ -233,32 +237,32 @@ canvas {
   max-height: 80%;
   min-height: 300px;
 }
-/* line 92, ../sass/_content.scss */
+/* line 96, ../sass/_content.scss */
 #shelf .sign {
   position: absolute;
 }
-/* line 96, ../sass/_content.scss */
+/* line 100, ../sass/_content.scss */
 #shelf .sign.sign-tomatoes {
   left: 21%;
   top: 4%;
 }
-/* line 101, ../sass/_content.scss */
+/* line 105, ../sass/_content.scss */
 #shelf .sign.sign-broccoli {
   left: 67%;
   top: 4%;
 }
-/* line 106, ../sass/_content.scss */
+/* line 110, ../sass/_content.scss */
 #shelf .sign.sign-burritos {
   top: 92%;
   left: 67%;
 }
-/* line 111, ../sass/_content.scss */
+/* line 115, ../sass/_content.scss */
 #shelf .sign.sign-carrots {
   top: 92%;
   left: 22%;
 }
 
-/* line 139, ../sass/_content.scss */
+/* line 143, ../sass/_content.scss */
 .checkout {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -271,7 +275,7 @@ canvas {
   padding: 20px 20px;
 }
 
-/* line 155, ../sass/_content.scss */
+/* line 159, ../sass/_content.scss */
 .button-checkout {
   bottom: 20%;
   cursor: pointer;
