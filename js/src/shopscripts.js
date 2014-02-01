@@ -17,8 +17,13 @@ var SHOP = {
 	},
 
 	tick: function() {
+		var width = 500;
+		var height = 400;
 		requestAnimationFrame(this.tick.bind(this));
-		this.handPos = SITE.getHandPos();
+		this.handPos = SITE.getHandPos(width, height);
+		if (!this.handPos) {
+			return;
+		}
 		if (this.currentItem) {
 			this.currentItem.pos = this.handPos;
 			$('#' + this.currentItem.filename + this.itemCount).css({ 'left': this.handPos.x + 'px', 'top': this.handPos.y + 'px' });
@@ -72,7 +77,7 @@ var SHOP = {
 	getProduce: function (pos) {
 		var cx = 300; // center coords of shelves
 		var cy = 300;
-		var r = 300;
+		var r = 300; // radius of shelves
 		var x = pos.x - cx;
 		var y = pos.y - cy;
 		// in bounds
@@ -89,26 +94,33 @@ var SHOP = {
 	onGrab: function() {
 		$('.limb').attr('src', this.grabbedLimb);
 		var produce = this.getProduce(this.handPos);
-		this.setCurrentItem('carrot', this.photos[produce], this.icons[produce], this.handPos);
+		if (produce) {
+			this.setCurrentItem(produce, this.photos[produce], this.icons[produce], this.handPos);
+		}
 	},
 
 	onUngrab: function() {
 		$('.limb').attr('src', this.ungrabbedLimb);
 		// Release
-		if (this.currentItem && this.handInCart(this.handPos)) {
-			console.log('droppin');
-			this.cart.files.push({
-				url: this.currentItem.url,
-				filename: this.currentItem.filename  + this.itemCount
-			});
-			this.itemCount++;
+		if (this.currentItem) {
+			if (this.handInCart(this.handPos)) {
+				console.log('droppin');
+				this.cart.files.push({
+					url: this.currentItem.url,
+					filename: this.currentItem.filename  + this.itemCount
+				});
+				$('#' + this.currentItem.filename + this.itemCount).addClass('shrink');
+				this.itemCount++;
+			} else { // remove currently grabbing porduce
+				$('#' + this.currentItem.filename + this.itemCount).remove();
+			}
 		}
 		this.currentItem = null;
 	},
 
 	handInCart: function(pos) {
-		var x = 600; // top left coords of cart
-		var y = 500;
+		var x = 200; // top left coords of cart
+		var y = 200;
 		var l = 100; // length,width
 		var w = 100;
 		return pos.x > x && pos.x < x + w && pos.y > y && pos.y < y + w;

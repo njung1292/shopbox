@@ -225,7 +225,8 @@ var SITE = {
 		this.width_AVG.step(this.width_LP.val());
 		this.updateGrab(this.width_DT.val(), this.width_AVG.val());
 
-		this.tracker.drawDefects([{depthPoint:this.getHandPos()}], "blue");
+		// this.tracker.drawDefects([{x: this.handPos_x.val(),
+		// 	y: this.handPos_y.val()}], "blue");
 	},
 
 	updateGrab: function(dt, avg) {
@@ -256,8 +257,13 @@ var SITE = {
 		// this.$body.on('click', (function(){console.log(this.getHandPos());}).bind(this));
 	},
 
-	getHandPos: function() {
-		return {x: this.handPos_x.val(), y: this.handPos_y.val()};
+	// x is from 0 to w, y is from 0 to h
+	getHandPos: function(w, h) {
+		if (!this.tracker) {
+			return null;
+		}
+		return {x: w * this.handPos_x.val() / this.tracker.canvas.width,
+			y: h * this.handPos_y.val() / this.tracker.canvas.height};
 	},
 
 	isGrabbed: function() {
