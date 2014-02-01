@@ -259,7 +259,7 @@ canvas {
 }
 
 /* line 139, ../sass/_content.scss */
-.button-checkout {
+.checkout {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -267,10 +267,14 @@ canvas {
   font-size: 28px;
   position: absolute;
   left: 35%;
+  width: 300px;
+  padding: 20px 20px;
+}
+
+/* line 155, ../sass/_content.scss */
+.button-checkout {
   bottom: 20%;
-  width: 280px;
   cursor: pointer;
   background-image: url("../../images/tileable_wood_texture.png");
-  padding: 20px 40px;
   border: 2px solid rgba(0, 0, 0, 0.2);
 }

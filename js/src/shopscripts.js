@@ -32,6 +32,7 @@ var SHOP = {
 	},
 
 	initVars: function() {
+		this.currentlyGrabbed = false;
 		this.photos = {
 			tomato: "http://www.ishs.org/sites/default/files/news-images/tomato.jpg",
 			carrot: "http://plus.maths.org/content/sites/plus.maths.org/files/articles/2011/paraconsistency/carrot.jpg",
@@ -60,14 +61,25 @@ var SHOP = {
 	bindEvents: function() {
 		console.log(SITE);
 		SITE.setGrabCallbacks(this.onGrab.bind(this), this.onUngrab.bind(this));
-		this.$checkoutButton.on('hover', this.hoverButton.bind(this));
+		//this.$checkoutButton.on('hover', this.hoverButton.bind(this));
 		this.$checkoutButton.on('click', this.saveToDropbox.bind(this));
 	},
 
-	hoverButton: function() {
-		alert('hi');
-		this.$checkoutButton.css({'opacity': 0});
+	bunnyOn: function() {
+		this.grabbedLimb = "images/pawsclosed.svg";
+		this.ungrabbedLimb = "images/pawsopen.svg";
+
+		if (this.currentlyGrabbed) {
+			$('.limb').attr('src', this.grabbedLimb);
+		} else {
+			$('.limb').attr('src', this.ungrabbedLimb);
+		}
 	},
+
+	// hoverButton: function() {
+	// 	alert('hi');
+	// 	this.$checkoutButton.css({'opacity': 0});
+	// },
 
 	setCurrentItem: function(_filename, _url, _iconURL, _pos) {
 		this.currentItem = {
@@ -107,6 +119,7 @@ var SHOP = {
 	},
 
 	onGrab: function() {
+		this.currentlyGrabbed = true;
 		$('.limb').attr('src', this.grabbedLimb);
 		var produce = this.getProduce(this.handPos);
 		if (produce) {
@@ -115,6 +128,7 @@ var SHOP = {
 	},
 
 	onUngrab: function() {
+		this.currentlyGrabbed = false;
 		$('.limb').attr('src', this.ungrabbedLimb);
 		// Release
 		if (this.currentItem) {
@@ -125,6 +139,12 @@ var SHOP = {
 					filename: this.currentItem.filename  + this.itemCount + ".jpg"
 				});
 				$('#' + this.currentItem.filename + this.itemCount).addClass('shrink');
+
+
+				//$('.weight-checkout').html('Weight: <span id="weight-num">' + this.itemCount*0.012 + '</span> mb');
+				//$('#weight-num').html(this.itemCount*0.012);
+				// console.log($('#weight-num'));
+				// console.log($('#weight-num').html());
 				this.itemCount++;
 
 
