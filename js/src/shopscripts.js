@@ -112,19 +112,20 @@ var SHOP = {
 		$('.limb').attr('src', this.ungrabbedLimb);
 		// Release
 		if (this.currentItem) {
-			if (this.handInCart(this.handPos)) {
+			//if (this.handInCart(this.handPos)) {
 				console.log('droppin');
 				this.cart.files.push({
 					url: this.currentItem.url,
-					filename: this.currentItem.filename  + this.itemCount
+					filename: this.currentItem.filename  + this.itemCount + ".jpg"
 				});
 				$('#' + this.currentItem.filename + this.itemCount).addClass('shrink');
 				this.itemCount++;
-			} 
 
-			// else { // remove currently grabbing porduce
-			// 	$('#' + this.currentItem.filename + this.itemCount).remove();
-			// }
+
+			//} else { // remove currently grabbing porduce
+			//	$('#' + this.currentItem.filename + this.itemCount).remove();
+			//}
+
 		}
 		this.currentItem = null;
 	},
