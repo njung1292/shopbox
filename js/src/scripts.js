@@ -198,7 +198,7 @@ var SITE = {
 		this.bindEvents();
 
 		var LP_coeff = 0.6;
-		var POS_coeff = 0.7;
+		var POS_coeff = 0.1;
 		var AVG_coeff = 0.1;
 		var LP_init = 300; // arbitrary
 		this.handPos_x =  new DIFFEQ(POS_coeff, 0, 1 - POS_coeff, LP_init);
