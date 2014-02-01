@@ -100,7 +100,7 @@ body {
 }
 
 /* @end */
-/* @group  */
+/* @group canvas */
 /* line 2, ../sass/_content.scss */
 canvas {
   -moz-transform: scale(-1, 1);
