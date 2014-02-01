@@ -204,14 +204,15 @@ canvas {
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
-  width: 40%;
+  width: 33%;
   min-width: 300px;
   left: 5%;
   top: 10%;
-  min-height: 300px;
+  height: auto;
+  min-height: 200px;
 }
 
-/* line 82, ../sass/_content.scss */
+/* line 83, ../sass/_content.scss */
 .wrapper {
   position: absolute;
   left: 0;
@@ -221,7 +222,7 @@ canvas {
   min-height: 100%;
 }
 
-/* line 92, ../sass/_content.scss */
+/* line 93, ../sass/_content.scss */
 #shelf {
   color: #fff;
   font-size: 18px;
@@ -234,35 +235,35 @@ canvas {
   right: 5%;
   top: 10%;
   bottom: 2%;
-  max-height: 80%;
+  max-height: 73%;
   min-height: 300px;
 }
-/* line 96, ../sass/_content.scss */
+/* line 98, ../sass/_content.scss */
 #shelf .sign {
   position: absolute;
 }
-/* line 100, ../sass/_content.scss */
+/* line 102, ../sass/_content.scss */
 #shelf .sign.sign-tomatoes {
-  left: 21%;
+  left: 20%;
   top: 4%;
 }
-/* line 105, ../sass/_content.scss */
+/* line 107, ../sass/_content.scss */
 #shelf .sign.sign-broccoli {
   left: 67%;
   top: 4%;
 }
-/* line 110, ../sass/_content.scss */
+/* line 112, ../sass/_content.scss */
 #shelf .sign.sign-burritos {
-  top: 92%;
+  top: 89%;
   left: 67%;
 }
-/* line 115, ../sass/_content.scss */
+/* line 117, ../sass/_content.scss */
 #shelf .sign.sign-carrots {
-  top: 92%;
+  top: 89%;
   left: 22%;
 }
 
-/* line 143, ../sass/_content.scss */
+/* line 145, ../sass/_content.scss */
 .checkout {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -270,12 +271,12 @@ canvas {
   text-align: center;
   font-size: 28px;
   position: absolute;
-  left: 35%;
-  width: 300px;
+  left: 30%;
+  width: 280px;
   padding: 20px 20px;
 }
 
-/* line 159, ../sass/_content.scss */
+/* line 161, ../sass/_content.scss */
 .button-checkout {
   bottom: 20%;
   cursor: pointer;
