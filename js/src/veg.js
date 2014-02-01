@@ -5,7 +5,7 @@ var veggies = {
     "burrito": ["http://media.chick-fil-a.com/Media/Img/catalog/Food/XLarge/Sausage-Breakfast-Burrito.png", "http://app.cookingmatters.org/sites/default/files/sos-img/HeartyEggBurritos.jpg", "http://universityprimetime.com//files/images/uploads/events/burrito.png", "http://www.rubios.com/images/menu/MenuItems/FullSite/baja-grill-burrito-chicken.jpg"]
     };
 
-getVeggie: function(veggie) {
+var getVeggie = function(veggie) {
     var vegArray = veggies.veggie;
     var i = Math.floor(Math.random() * vegArray.length);
     return vegArray[i];

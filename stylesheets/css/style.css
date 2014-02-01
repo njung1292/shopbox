@@ -100,72 +100,17 @@ body {
 }
 
 /* @end */
-/* @group canvas */
 /* line 2, ../sass/_content.scss */
-body {
-  background-color: #EEE;
-  padding-left: 280px;
-}
-
-/* line 6, ../sass/_content.scss */
-aside {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 256px;
-  box-sizing: border-box;
-  background-color: #333;
-}
-
-/* line 15, ../sass/_content.scss */
-.main {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 256px;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  -webkit-transform: translateZ(0px);
-}
-
-/* line 27, ../sass/_content.scss */
-.small {
-  opacity: 0.75;
-  position: relative;
-  -webkit-transform: scale(0.4);
-  -webkit-transform-origin: 0% 0%;
-}
-
-/* line 35, ../sass/_content.scss */
-#face {
+.produce {
   position: absolute;
-  border: 5px solid #FEB909;
-  border-radius: 10px;
-  display: none;
+  width: 100px;
+  height: auto;
 }
 
-/* line 43, ../sass/_content.scss */
-article {
-  padding: 100px 20px;
-  font-family: "ff-meta-serif-web-pro",serif;
-  font-family: "proxima-nova-soft",sans-serif;
-  font-size: 24px;
-  line-height: 36px;
-  min-width: 400px;
-  max-width: 600px;
-  margin: 0 auto;
+/* line 8, ../sass/_content.scss */
+.limb {
+  position: absolute;
+  height: 300px;
+  width: auto;
+  z-index: 1000;
 }
-
-/* line 54, ../sass/_content.scss */
-p {
-  -webkit-transition: color 0.2s linear;
-}
-
-/* line 57, ../sass/_content.scss */
-p.reading {
-  color: #003BFF;
-}
-
-/* @end */
