@@ -5,7 +5,7 @@ var SITE = {
 		//this.$el = $('.el');
 
 		this.bindEvents();
-
+        
 		//this.initiateVideo();
 			
 		//this.objectDetectStuff();
@@ -38,7 +38,7 @@ var SITE = {
 		  this.video = document.getElementById("video");
 		  this.canvas = document.getElementById("canvas");
 		  this.context = this.canvas.getContext("2d");
-
+          
 		  this.canvas.width = parseInt(this.canvas.style.width);
 		  this.canvas.height = parseInt(this.canvas.style.height);
 		  
@@ -148,7 +148,7 @@ var SITE = {
 		  var src = imageSrc.data, dst = imageDst.data,
 		      width = imageSrc.width, span = 4 * width,
 		      len = src.length, i = 0, j = 0, k = 0;
-		  
+              
 		  for(i = 0; i < len; i += span){
 		  
 		    for(j = 0; j < width; j += 5){
@@ -303,9 +303,18 @@ var SITE = {
 		DEMO.prototype.draw = function(candidate){
 		  if (candidate){
 		  
-		    if (this.cbxHull.checked){
+		    if (true){//this.cbxHull.checked){
 		      this.drawHull(candidate.hull, "red");
-		    }
+		    
+              window.maxWidth = Math.max(this.image.width, window.maxWidth);
+              if (window.maxWidth > this.image.width*3/2){
+                console.log("Closed");
+              }
+              else{
+                console.log("Open");
+              }
+              
+            }
 		    
 		    if (this.cbxDefects.checked){
 		      this.drawDefects(candidate.defects, "blue");
@@ -317,6 +326,7 @@ var SITE = {
 		      this.createImage(this.tracker.mask, this.image), 
 		      this.canvas.width - this.image.width,
 		      this.canvas.height - this.image.height);
+              
 		  }
 		};
 		
