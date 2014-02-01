@@ -1,5 +1,18 @@
-#shelf {
+//#shelf {
 	.produce {
 		position: absolute;
+        width: 100px;
+        height: auto;
 	}
-}
+
+    .limb {
+        position: absolute;
+        height: 300px;
+        width: auto;
+        z-index: 1000;
+    }
+//}
+
+// .wrapper {
+//     position: relative;
+// }

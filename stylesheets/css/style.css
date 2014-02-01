@@ -101,6 +101,16 @@ body {
 
 /* @end */
 /* line 2, ../sass/_content.scss */
-#shelf .produce {
+.produce {
   position: absolute;
+  width: 100px;
+  height: auto;
+}
+
+/* line 8, ../sass/_content.scss */
+.limb {
+  position: absolute;
+  height: 300px;
+  width: auto;
+  z-index: 1000;
 }

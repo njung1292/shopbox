@@ -46,9 +46,7 @@ TRACKER.prototype.videoError = function(error){
 };
 
 TRACKER.prototype.tick = function(){
-  var that = this;
-
-  requestAnimationFrame( function() { return that.tick(); } );
+	requestAnimationFrame(this.tick.bind(this));	
   
   if (this.video.readyState === this.video.HAVE_ENOUGH_DATA){
 	var image = this.snapshot();
@@ -183,12 +181,15 @@ DIFFEQ.prototype.val = function() {
 }
 
 var SITE = {
-	handPos_x: null,
-	handPos_y: null,
-	width_LP: null, // low-passed
-	width_DT: null, // derivative of low-pass
-	width_AVG: null, // lower-pass of low-pass
-	grab: false,
+	// handPos_x: null,
+	// handPos_y: null,
+	// width_LP: null, // low-passed
+	// width_DT: null, // derivative of low-pass
+	// width_AVG: null, // lower-pass of low-pass
+	// grab: false,
+
+	// onGrab: function(){},
+	// onUngrab: function(){},
 
 	init: function() {
 		this.$document = $(window.document);
@@ -231,17 +232,28 @@ var SITE = {
 		var grabThresh = 0.15;
 		var ungrabThresh = 0.15;
 		if (dt > ungrabThresh * avg && this.grab) {
-			this.grab = false;
+			if (this.onUngrab) {
+				this.onUngrab();
+			}
 			console.log("UNGRAB");
+			this.grab = false;
 		}
 		if (dt < -1 * ungrabThresh * avg && !this.grab) {
-			this.grab = true;
+			if (this.onGrab) {
+				this.onGrab();
+			}
 			console.log("GRAB");
+			this.grab = true;
 		}
 	},
 
+	setGrabCallbacks: function(onGrab, onUngrab) {
+		this.onGrab = onGrab;
+		this.onUngrab = onUngrab;
+	},
+
 	bindEvents: function() {
-		this.$body.on('click', (function(){console.log(this.getHandPos());}).bind(this));
+		// this.$body.on('click', (function(){console.log(this.getHandPos());}).bind(this));
 	},
 
 	getHandPos: function() {
@@ -258,4 +270,4 @@ var SITE = {
 	}
 }
 
-SITE.init();
+//SITE.init();
