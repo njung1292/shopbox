@@ -4,42 +4,18 @@
 	<meta charset="utf-8">
 	<title>(s)hopbox</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href='http://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="stylesheets/css/style.css">
 	<script src="js/vendor/modernizr.js"></script>
 </head>
 <body>
-
-<!-- 	<center>
-	  <div style="margin: 10px;"><strong>-= Hand Tracking =-</strong></div>
-	  <video id="video" autoplay="true" style="display:none;"></video>
-	  <canvas id="canvas" style="width:640px; height:480px;border:1px solid black;"></canvas>
-	  <div style="margin: 15px;">
-	    <input id="cbxHull" type="checkbox" checked="checked">Convex Hull</input>
-	    <input id="cbxDefects" type="checkbox">Convexity Defects</input>
-	    <input id="cbxSkin" type="checkbox" checked="checked">Skin Detection</input>
-	  </div>
-	  <div style="margin: 15px;"><strong>Powered by <a href="http://code.google.com/p/js-handtracking/" target="_blank">js-handtracking</a></strong></div>
-	</center> -->
     
     <audio src="/music/03 Take Five.m4a" hidden loop autoplay></audio>
-
-	<!-- <center> -->
-    <!-- <div style="margin: 10px;"><strong>-= Hand Tracking =-</strong></div> -->
-    	<video id="video" autoplay="true" style="display:none;"></video>
-    	<canvas id="canvas" class="" style="width:240px; height:180px;"></canvas>
-    	<!-- <div style="margin: 15px;"> -->
-      	<!-- <input id="cbxHull" type="checkbox" checked="checked">Convex Hull</input>
-      	<input id="cbxDefects" type="checkbox">Convexity Defects</input>
-      	<input id="cbxSkin" type="checkbox" checked="checked">Skin Detection</input> -->
-    	<!-- </div> -->
-    <!-- <div style="margin: 15px;"><strong>Powered by <a href="http://code.google.com/p/js-handtracking/" target="_blank">js-handtracking</a></strong></div> -->
- <!--  </center> -->
+	<video id="video" autoplay="true" style="display:none;"></video>
+	<canvas id="canvas" class="" style="width:240px; height:180px;"></canvas>
 
 
 <div class="wrapper">
   	<div id="shelf">
-  		<!-- <img src="images/shelf.svg"> -->
   		<div class="sign sign-tomatoes">tomatoes</div>
   		<div class="sign sign-burritos">burritos</div>
   		<div class="sign sign-carrots">carrots</div>
@@ -49,15 +25,7 @@
 
 	<div id="cart"></div>
 
-  	<!-- <div id="checkout">
-	  	<img src="images/tomato.svg" class="produce">
-	  	<img src="images/burrito.svg" class="produce">
-	  	<img src="images/carrot.svg" class="produce">
-	  	<img src="images/broccoli.svg" class="produce">
-	</div> -->
-
 	<div class="checkout button-checkout">Checkout!</div>
-	<!-- <div class="checkout weight-checkout">Weight: <span id="weight-num">0</span> mb</div> -->
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
