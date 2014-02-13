@@ -1,4 +1,4 @@
-(sh)opbox
+(s)hopbox
 ===========
 ####(s)hop box: tartanhacks 2014 by the camel
 *"hey, bunnies need to shop too..."*
